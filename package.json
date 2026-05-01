@@ -40,12 +40,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/havishhexe/gif-favicon.git"
+    "url": "git+https://github.com/havishhexe/Animated-Favicon.git"
   },
   "bugs": {
-    "url": "https://github.com/havishhexe/gif-favicon/issues"
+    "url": "https://github.com/havishhexe/Animated-Favicon/issues"
   },
-  "homepage": "https://github.com/havishhexe/gif-favicon#readme",
+  "homepage": "https://github.com/havishhexe/Animated-Favicon#readme",
   "peerDependencies": {
     "omggif": "^1.0.10"
   },
