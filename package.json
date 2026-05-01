@@ -1,0 +1,56 @@
+{
+  "name": "gif-favicon",
+  "version": "1.0.0",
+  "description": "Animated GIF favicon library with high-quality canvas rendering",
+  "main": "dist/gif-favicon.js",
+  "browser": "dist/gif-favicon.js",
+  "unpkg": "dist/gif-favicon.min.js",
+  "jsdelivr": "dist/gif-favicon.min.js",
+  "exports": {
+    ".": {
+      "require": "./dist/gif-favicon.js",
+      "default": "./dist/gif-favicon.js"
+    },
+    "./dist/gif-favicon.js": "./dist/gif-favicon.js",
+    "./dist/gif-favicon.min.js": "./dist/gif-favicon.min.js"
+  },
+  "files": [
+    "dist",
+    "src/gif-favicon.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run build:unminified && npm run build:minified",
+    "build:unminified": "copyfiles -f src/gif-favicon.js dist",
+    "build:minified": "terser src/gif-favicon.js -o dist/gif-favicon.min.js -c -m --comments false",
+    "check": "npm pack --dry-run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "favicon",
+    "gif",
+    "animated",
+    "animated-favicon",
+    "browser",
+    "tab-icon",
+    "canvas"
+  ],
+  "author": "havishhexe",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/havishhexe/gif-favicon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/havishhexe/gif-favicon/issues"
+  },
+  "homepage": "https://github.com/havishhexe/gif-favicon#readme",
+  "peerDependencies": {
+    "omggif": "^1.0.10"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "terser": "^5.46.2"
+  }
+}

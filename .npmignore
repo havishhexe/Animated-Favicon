@@ -1,0 +1,22 @@
+# Dependencies and local installs
+node_modules/
+
+# Source demos and local-only files
+examples/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git metadata
+.git/
+.gitignore

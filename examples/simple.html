@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GifFavicon Simple Example</title>
+
+    <script src="../node_modules/omggif/omggif.js"></script>
+    <script src="../dist/gif-favicon.js"></script>
+  </head>
+  <body>
+    <h1>GifFavicon simple example</h1>
+    <p>If this page is served over HTTP, it loads <code>demo.gif</code> automatically.</p>
+    <p>If this page is opened directly as a file, choose a GIF below.</p>
+    <input id="gif-file" type="file" accept="image/gif">
+
+    <script>
+      const favicon = new GifFavicon({
+        fps: 0,
+        onLoad(info) {
+          console.log("GIF loaded:", info);
+        },
+        onError(error) {
+          console.error("GifFavicon error:", error);
+        }
+      });
+
+      const fileInput = document.querySelector("#gif-file");
+
+      fileInput.addEventListener("change", () => {
+        const file = fileInput.files[0];
+        if (file) {
+          favicon.loadFromFile(file);
+        }
+      });
+
+      if (window.location.protocol !== "file:") {
+        favicon.load("./demo.gif");
+      }
+    </script>
+  </body>
+</html>
