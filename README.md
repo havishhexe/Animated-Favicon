@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/bf749d78-5e23-43bc-8ccb-ec07adcb8251
+
 # GifFavicon
 
 Animated GIF favicons for browsers, rendered through canvas with supersampling for crisp tab icons.
