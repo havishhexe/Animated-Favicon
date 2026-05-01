@@ -31,7 +31,11 @@
       this._initCanvases();
 
       // Auto-load if a GIF source is provided
-      if (options.gifFile) {
+      if (options.gifBytes) {
+        this.loadFromBytes(options.gifBytes);
+      } else if (options.gifArrayBuffer) {
+        this.loadFromArrayBuffer(options.gifArrayBuffer);
+      } else if (options.gifFile) {
         this.loadFromFile(options.gifFile);
       } else if (options.gifBase64) {
         this.loadFromBase64(options.gifBase64);
@@ -90,9 +94,20 @@
           return info;
         })
         .catch(err => {
-          this._handleError('Load error: ' + err.message);
-          throw err;
+          const loadError = this._createLoadError(path, err);
+          this._handleError(loadError.message);
+          throw loadError;
         });
+    }
+
+    _createLoadError(path, err) {
+      if (err instanceof TypeError) {
+        return new Error(
+          `Failed to fetch GIF "${path}". The browser probably blocked the request because of CORS, file:// restrictions, or a network error. Host the GIF on the same origin, enable CORS on the GIF server, use loadFromFile(file), use loadFromBase64(base64), or fetch it through your own backend and pass the bytes to loadFromArrayBuffer(buffer).`
+        );
+      }
+
+      return new Error('Load error: ' + err.message);
     }
 
     _isInlineGifSource(path) {
@@ -133,6 +148,33 @@
         };
         reader.readAsArrayBuffer(file);
       });
+    }
+
+    /**
+     * Load GIF from ArrayBuffer
+     * @param {ArrayBuffer} buffer - GIF bytes
+     * @returns {Promise}
+     */
+    loadFromArrayBuffer(buffer) {
+      return this.loadFromBytes(new Uint8Array(buffer));
+    }
+
+    /**
+     * Load GIF from Uint8Array or compatible byte array
+     * @param {Uint8Array|Array<number>} bytes - GIF bytes
+     * @returns {Promise}
+     */
+    loadFromBytes(bytes) {
+      try {
+        return this._parseGif(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes)).then(info => {
+          if (this.onLoad) this.onLoad(info);
+          if (this.autoStart) this.start();
+          return info;
+        });
+      } catch (err) {
+        this._handleError('Byte load error: ' + err.message);
+        return Promise.reject(err);
+      }
     }
 
     /**
