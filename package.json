@@ -1,6 +1,6 @@
 {
   "name": "gif-favicon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Animated GIF favicon library with high-quality canvas rendering",
   "main": "dist/gif-favicon.js",
   "browser": "dist/gif-favicon.js",
