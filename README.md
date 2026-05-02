@@ -178,15 +178,6 @@ new GifFavicon({
 - `reset()`: Stop and clear the favicon frames.
 - `getInfo()`: Get the current state.
 
-## Development
-
-```bash
-npm install
-npm run build
-npm run check
-```
-
-`npm run check` runs `npm pack --dry-run` so you can see what files will be published.
 
 ## License
 
