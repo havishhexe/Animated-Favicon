@@ -1,6 +1,8 @@
 
 
 https://github.com/user-attachments/assets/bf749d78-5e23-43bc-8ccb-ec07adcb8251
+
+
 The animated gif in the demo is made by Kirill Epler: https://dribbble.com/nikman2214
 
 # GifFavicon
